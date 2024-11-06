@@ -1,0 +1,68 @@
+// Define pin connections for motor drivers
+const int dirPin1 = 2;  // Direction pin for Motor 1
+const int stepPin1 = 3; // Step pin for Motor 1
+
+const int dirPin2 = 4;  // Direction pin for Motor 2
+const int stepPin2 = 5; // Step pin for Motor 2
+
+const int dirPin3 = 6;  // Direction pin for Motor 3
+const int stepPin3 = 7; // Step pin for Motor 3
+
+// Steps per revolution for your motors
+const int stepsPerRevolution = 200;
+
+void setup() {
+  // Set step and direction pins as outputs
+  pinMode(stepPin1, OUTPUT);
+  pinMode(dirPin1, OUTPUT);
+
+  pinMode(stepPin2, OUTPUT);
+  pinMode(dirPin2, OUTPUT);
+
+  pinMode(stepPin3, OUTPUT);
+  pinMode(dirPin3, OUTPUT);
+
+  // Initial direction for all motors
+  digitalWrite(dirPin1, HIGH); // Set Motor 1 to move in one direction
+  digitalWrite(dirPin2, HIGH); // Set Motor 2 to move in one direction
+  digitalWrite(dirPin3, HIGH); // Set Motor 3 to move in one direction
+}
+
+void loop() {
+  // Move motor 1
+  for (int i = 0; i < stepsPerRevolution; i++) {
+    digitalWrite(stepPin1, HIGH);
+    delayMicroseconds(1000); // Adjust speed (time between steps)
+    digitalWrite(stepPin1, LOW);
+    delayMicroseconds(1000);
+  }
+
+  delay(1000); // Delay between rotations
+
+  // Move motor 2
+  for (int i = 0; i < stepsPerRevolution; i++) {
+    digitalWrite(stepPin2, HIGH);
+    delayMicroseconds(1000);
+    digitalWrite(stepPin2, LOW);
+    delayMicroseconds(1000);
+  }
+
+  delay(1000); // Delay between rotations
+
+  // Move motor 3
+  for (int i = 0; i < stepsPerRevolution; i++) {
+    digitalWrite(stepPin3, HIGH);
+    delayMicroseconds(1000);
+    digitalWrite(stepPin3, LOW);
+    delayMicroseconds(1000);
+  }
+
+  delay(1000); // Delay between rotations
+
+  // Reverse direction for all motors
+  digitalWrite(dirPin1, !digitalRead(dirPin1));
+  digitalWrite(dirPin2, !digitalRead(dirPin2));
+  digitalWrite(dirPin3, !digitalRead(dirPin3));
+
+  delay(1000); // Wait before next direction change
+}
